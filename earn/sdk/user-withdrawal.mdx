@@ -1,0 +1,35 @@
+---
+title: 'Withdrawal Limits'
+description: 'Retrieve user withdrawal limits via SDK and manage them via dashboard'
+icon: 'circle-info'
+---
+
+## Retrieving Withdrawal Limit via SDK
+
+Use the `GetBalance` SDK method to retrieve a user's current withdrawal limit from your client application.
+
+### Implementation
+
+```csharp
+ZBDController.Instance.GetBalance(callback =>
+{
+  if (callback.success)
+  {
+    // Withdrawal limit in satoshis (not millisatoshis)
+    long withdrawalLimitSats = callback.withdrawalLimit;
+    Debug.Log($"Withdrawal limit: {withdrawalLimitSats} sats");
+  }
+  else
+  {
+    Debug.LogError($"GetBalance failed: {callback.message}");
+  }
+});
+```
+
+The withdrawal limit is included in the callback response along with the user's current balance.
+
+---
+
+## Managing Withdrawal Limits
+
+To increase or decrease user withdrawal limits, use the dashboard: **[Manage Withdrawal Limits via Dashboard](/earn/sdk/manage-withdrawal-limits)**
